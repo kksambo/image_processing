@@ -10,7 +10,10 @@ COPY . /app
 # Install required Python packages
 RUN pip install --no-cache-dir flask flask-cors tensorflow pillow
 
-# Expose the port the app runs on
+# Suppress TensorFlow logs
+ENV TF_CPP_MIN_LOG_LEVEL=2
+
+# Expose the port Render will use
 EXPOSE 5000
 
 # Command to run the Flask app
