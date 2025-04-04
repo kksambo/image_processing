@@ -8,6 +8,7 @@ import os
 
 # Initialize the Flask application
 app = Flask(__name__)
+
 CORS(app)  # Enable CORS for the entire app
 
 # Load the pre-trained MobileNetV2 model (pre-trained on ImageNet)
@@ -53,4 +54,5 @@ def classify_image():
         return jsonify(result)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Use PORT from environment or default to 5000
+    app.run(host='0.0.0.0', port=port, debug=True)
